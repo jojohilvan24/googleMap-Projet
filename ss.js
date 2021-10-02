@@ -1,37 +1,54 @@
-// // // //basic with/out multiple marker
-function initMap(){
-   let myLocationEastRemo = {lat: 41.883100, lng: -87.634350};
-  const locationswe = [
-    { lat: 41.883100, lng: -87.634350 },
-    { lat: 41.885880, lng: -87.628330 },
-    { lat: 42.045250, lng: -88.045490 },
-    { lat: 41.889191, lng: -87.630989 },
-    { lat: 41.879990, lng: -87.639076 },
-    { lat: 41.849150, lng: -87.930230 },
-    { lat: 41.894910, lng: -87.621400 },
-    { lat: 41.884740, lng: -87.624140 },
-    { lat: 41.888290, lng: -87.635240 },
-    { lat: 41.916860, lng: -87.657240 },
-];
 
-  let map = new google.maps.Map( document.getElementById("map"), {
-      center:  { lat: 41.883100, lng: -87.634350 },
-      zoom: 10,
-      mapId: 'f13cb0fcf7cfdb03'
-  });
+function initMap(){
+			  let myLocationEastRemo = {lat: 14.553630, lng: 121.062510};   //variable to set marker location
+			  let map = new google.maps.Map( document.getElementById("map"), {  
+				    center: myLocationEastRemo,
+				    zoom: 2
+		    }); 
+
+			   //market object
+			  //marker of your coordinates OR location called "myLocationEastRemo"
+			  let marker = new google.maps.Marker( {
+					    position: myLocationEastRemo,   
+					    map: map,
+		     } );
+};
+
+
+
+// function initMap(){
+//    let myLocationEastRemo = {lat: 41.883100, lng: -87.634350};
+//   const locationswe = [
+//     { lat: 41.883100, lng: -87.634350 },
+//     { lat: 41.885880, lng: -87.628330 },
+//     { lat: 42.045250, lng: -88.045490 },
+//     { lat: 41.889191, lng: -87.630989 },
+//     { lat: 41.879990, lng: -87.639076 },
+//     { lat: 41.849150, lng: -87.930230 },
+//     { lat: 41.894910, lng: -87.621400 },
+//     { lat: 41.884740, lng: -87.624140 },
+//     { lat: 41.888290, lng: -87.635240 },
+//     { lat: 41.916860, lng: -87.657240 },
+// ];
+
+//   let map = new google.maps.Map( document.getElementById("map"), {
+//       center:  { lat: 41.883100, lng: -87.634350 },
+//       zoom: 10,
+//       mapId: 'f13cb0fcf7cfdb03'
+//   });
 
 // const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   //marker of your address OR set location
-  var iconBase = 'D:/practice2'
+//   var iconBase = 'D:/practice2'
 
-  let marker = new google.maps.Marker({
-      position:   { lat: 41.883100, lng: -87.634350 },
-      map: map,
-      icon: iconBase + './3330.png'
-  });
+//   let marker = new google.maps.Marker({
+//       position:   { lat: 41.883100, lng: -87.634350 },
+//       map: map,
+//       icon: iconBase + './3330.png'
+//   });
 
-}
+// }
 
 //create the function called initMap, althoug we can use different name, just make sure its the same in the source attribute in HTML.
 //create an object for your location or also called location Marker.
