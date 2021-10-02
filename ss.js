@@ -1,18 +1,23 @@
 
-function initMap(){
-			  let myLocationEastRemo = {lat: 14.553630, lng: 121.062510};   //variable to set marker location
-			  let map = new google.maps.Map( document.getElementById("map"), {  
-				    center: myLocationEastRemo,
-				    zoom: 2
-		    }); 
 
-			   //market object
-			  //marker of your coordinates OR location called "myLocationEastRemo"
-			  let marker = new google.maps.Marker( {
-					    position: myLocationEastRemo,   
-					    map: map,
-		     } );
+
+function initMap(){
+  let mylocation= {lat: 41.883100, lng: -87.634350};   //variable to set marker location
+
+  let map = new google.maps.Map(document.getElementById('map'), {  
+      center:mylocation,
+      zoom: 2
+  });   
+
+   //market object
+  //marker of your coordinates OR location called "myLocationEastRemo"
+  let marker = new google.maps.Marker( {
+        position: mylocation,   
+        map: map,
+  });
 };
+
+
 
 
 
