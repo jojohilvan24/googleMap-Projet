@@ -1,14 +1,19 @@
 
 
-
-function initMap(){
+//map function
+function initMap(){         
       let mylocation= {lat: 41.883100, lng: -87.634350};   //variable to set marker location
 
+      //map object
       let map = new google.maps.Map(document.getElementById('map'), {  
           center: mylocation,
           zoom: 4,
           mapId: "f13cb0fcf7cfdb03"
       });   
+
+   
+      //custom marker icon location
+      let markerIcon = "D:/google map api/images/3330.png";
 
       const contentString =
         '<div class="content">' +
@@ -18,6 +23,7 @@ function initMap(){
         "</div>"
       ;
 
+      //info window object
       const infowindow = new google.maps.InfoWindow({
         content: contentString,
       });
@@ -28,9 +34,11 @@ function initMap(){
       //marker of your coordinates OR location called "myLocationEastRemo"
       let marker = new google.maps.Marker( {
             position: mylocation,   
-            map: map,
+            map: map,                 
+            icon: markerIcon           //property and value of the custom marker icon
       });
 
+      //event listener to display infowindow
       marker.addListener("click", () => {
         infowindow.open({
           anchor: marker,
