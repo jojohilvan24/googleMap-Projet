@@ -1,237 +1,63 @@
 
 
-//map function
-function initMap(){         
-      let mylocation= {lat: 41.883100, lng: -87.634350};   //variable to set marker location
-
-      //map object
-      let map = new google.maps.Map(document.getElementById('map'), {  
-          center: mylocation,
-          zoom: 4,
-          mapId: "f13cb0fcf7cfdb03"
-      });   
-
-   
-      //custom marker icon location
-      let markerIcon = "D:/google map api/images/3330.png";
-
-      const contentString =
-        '<div class="content">' +
-              '<a href="http://www.google.com" class="siteheader">PBK EXPRESS DOWNERS GROVE</a>' +
-              '<a href="http://www.google.com" class="siteaddress">2589 Ogden Ave Downers Grove, IL 60515</a>' +
-              '<a href="http://www.google.com" class="siteaddressbtn">LOCATION DETAILS</a>'
-        "</div>"
-      ;
-
-      //info window object
-      const infowindow = new google.maps.InfoWindow({
-        content: contentString,
+// The following example creates complex markers to indicate beaches near
+// Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+// to the base of the flagpole.
+function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: { lat: -33.9, lng: 151.2 },
       });
 
-   
+      setMarkers(map);
+}
+
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+const beaches = [
+      ["Bondi Beach", -33.890542, 151.274856, 4],
+      ["Coogee Beach", -33.923036, 151.259052, 5],
+      ["Cronulla Beach", -34.028249, 151.157507, 3],
+      ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
+      ["Maroubra Beach", -33.950198, 151.259302, 1],
+];
+
+function setMarkers(map) {
+  // Adds markers to the map.
+  // Marker sizes are expressed as a Size of X,Y where the origin of the image
+  // (0,0) is located in the top left of the image.
+  // Origins, anchor positions and coordinates of the marker increase in the X
+  // direction to the right and in the Y direction down.
+  const image = {
+    url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32),
+  };
+  // Shapes define the clickable region of the icon. The type defines an HTML
+  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+  // The final coordinate closes the poly by connecting to the first coordinate.
+  const shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: "poly",
+  };
+
+  for (let i = 0; i < beaches.length; i++) {
+    const beach = beaches[i];
+
+    new google.maps.Marker({
+      position: { lat: beach[1], lng: beach[2] },
+      map,
+      icon: image,
+      shape: shape,
+      title: beach[0],
+      zIndex: beach[3],
+    });
+  }
+}
 
-      //market object
-      //marker of your coordinates OR location called "myLocationEastRemo"
-      let marker = new google.maps.Marker( {
-            position: mylocation,   
-            map: map,                 
-            icon: markerIcon           //property and value of the custom marker icon
-      });
 
-      //event listener to display infowindow
-      marker.addListener("click", () => {
-        infowindow.open({
-          anchor: marker,
-          map,
-          shouldFocus: false,
-        });
-      });
 
-};
-
-
-
-
-
-// function initMap(){
-//    let myLocationEastRemo = {lat: 41.883100, lng: -87.634350};
-//   const locationswe = [
-//     { lat: 41.883100, lng: -87.634350 },
-//     { lat: 41.885880, lng: -87.628330 },
-//     { lat: 42.045250, lng: -88.045490 },
-//     { lat: 41.889191, lng: -87.630989 },
-//     { lat: 41.879990, lng: -87.639076 },
-//     { lat: 41.849150, lng: -87.930230 },
-//     { lat: 41.894910, lng: -87.621400 },
-//     { lat: 41.884740, lng: -87.624140 },
-//     { lat: 41.888290, lng: -87.635240 },
-//     { lat: 41.916860, lng: -87.657240 },
-// ];
-
-//   let map = new google.maps.Map( document.getElementById("map"), {
-//       center:  { lat: 41.883100, lng: -87.634350 },
-//       zoom: 10,
-//       mapId: 'f13cb0fcf7cfdb03'
-//   });
-
-// const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-  //marker of your address OR set location
-//   var iconBase = 'D:/practice2'
-
-//   let marker = new google.maps.Marker({
-//       position:   { lat: 41.883100, lng: -87.634350 },
-//       map: map,
-//       icon: iconBase + './3330.png'
-//   });
-
-// }
-
-//create the function called initMap, althoug we can use different name, just make sure its the same in the source attribute in HTML.
-//create an object for your location or also called location Marker.
-//create the new google.maps.Map() object.
-//get the map selector container.
-//the "center" property of the map object tell where to center the map when the page loads.
-//the "zoom" property specify the zoom level of the map.
-    //zoom = 0 is the lowest zoom and display the earth or globe.
-
-
-//create the google marker() function to for your location marked
-// add to parameter and its value
-    //   let marker = new google.maps.Marker({     //marker constructor
-    // position: myLocationEastRemo,       //marker position
-    // map: map                            //google map marker
-
-
-
-// // /*With Marker Cluster*/
-
-//     function initMap() {
-//       const map = new google.maps.Map(document.getElementById("map"), {
-//         center:  { lat: 41.883100, lng: -87.634350 },
-//         zoom: 13,
-//         mapId: "f13cb0fcf7cfdb03"
-//       });
-
-//       // Create an array of alphabetical characters used to label the markers.
-//       // const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//       // Add some markers to the map.
-//       // Note: The code uses the JavaScript Array.prototype.map() method to
-//       // create an array of markers based on a given "locations" array.
-//       // The map() method here has nothing to do with the Google Maps API.
-
-
-//       var iconBase = 'D:/practice2'
-//       const markers = locations.map((location, i) => {
-//         return new google.maps.Marker({
-//           position: location,
-//           // label: labels[i % labels.length],
-//           //  icon: 'https://maps.gstatic.com/mapfiles/transparent.png'
-//           icon: iconBase + './3330.png'
-
-//         });
-//       });
-
-//  //     Add a marker clusterer to manage the markers.
-//       new MarkerClusterer(map, markers, {
-//         imagePath:
-//         "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",  //image path
-
-//       });
-
-//     }
-//     const locations = [
-//       { lat: 41.883100, lng: -87.634350 },
-//       { lat: 41.885880, lng: -87.628330 },
-//       { lat: 42.045250, lng: -88.045490 },
-//       { lat: 41.889191, lng: -87.630989 },
-//       { lat: 41.879990, lng: -87.639076 },
-//       { lat: 41.849150, lng: -87.930230 },
-//       { lat: 41.894910, lng: -87.621400 },
-//       { lat: 41.884740, lng: -87.624140 },
-//       { lat: 41.888290, lng: -87.635240 },
-//       { lat: 41.916860, lng: -87.657240 },
-//       { lat: -37.759859, lng: 145.128708 },
-//       { lat: -37.765015, lng: 145.133858 },
-//       { lat: -37.770104, lng: 145.143299 },
-
-//     ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//This example requires the Places library. Include the libraries=places
-//parameter when you first load the API. For example:
-//<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-// function initMap() {
-//   const map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: -33.866, lng: 151.196 },
-//     zoom: 15,
-//   });
-//   const request = {
-//     placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-//     fields: ["name", "formatted_address", "place_id", "geometry"],
-//   };
-//   const infowindow = new google.maps.InfoWindow();
-//   const service = new google.maps.places.PlacesService(map);
-//   service.getDetails(request, (place, status) => {
-//     if (
-//       status === google.maps.places.PlacesServiceStatus.OK &&
-//       place &&
-//       place.geometry &&
-//       place.geometry.location
-//     ) {
-//       const marker = new google.maps.Marker({
-//         map,
-//         position: place.geometry.location,
-//       });
-//       google.maps.event.addListener(marker, "click", () => {
-//         const content = document.createElement("div");
-//         const nameElement = document.createElement("h2");
-//         nameElement.textContent = place.name;
-//         content.appendChild(nameElement);
-//         const placeIdElement = document.createElement("p");
-//         placeIdElement.textContent = place.place_id;
-//         content.appendChild(placeIdElement);
-//         const placeAddressElement = document.createElement("p");
-//         placeAddressElement.textContent = place.formatted_address;
-//         content.appendChild(placeAddressElement);
-//         infowindow.setContent(content);
-//         infowindow.open(map, marker);
-//       });
-//     }
-//   });
-// }
